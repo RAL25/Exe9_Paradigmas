@@ -1,9 +1,19 @@
 import 'dart:math';
 
-void ordenacaoDecrescente(List<int> lista){
-    lista.sort((b,a) => a.compareTo(b));
-    print("Lista ordenada decrescentemente:");   
-    print(lista);
+List<int> ordenacaoCrescente(List<int> lista) {
+  for (int i = 1; i < lista.length; i++) {
+    int indiceAtual = i;
+    for (int j = i - 1; j >= 0; j--) {
+      if (lista[i] < lista[j]) {
+        int aux = lista[i];
+        lista[i] = lista[j];
+        lista[j] = aux;
+        --i;
+      }
+    }
+    i = indiceAtual;
+  }
+  return lista;
 }
 
 List<int> gerarLista(){
