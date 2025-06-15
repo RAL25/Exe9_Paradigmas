@@ -14,6 +14,25 @@ void filtrarPares(List<int> lista) {
   print(pares);
 }
 
+// Estratégia 3: Ordenação crescente
+List<int> ordenacaoCrescente(List<int> lista) {
+  List<int> mutableList = List<int>.from(lista); // Create a mutable copy
+  for (int i = 1; i < mutableList.length; i++) {
+    int indiceAtual = i;
+    for (int j = i - 1; j >= 0; j--) {
+      if (mutableList[indiceAtual] < mutableList[j]) {
+        int aux = mutableList[indiceAtual];
+        mutableList[indiceAtual] = mutableList[j];
+        mutableList[j] = aux;
+        indiceAtual--; // Decrement indiceAtual instead of i
+      }
+    }
+  }
+  print("Lista ordenada crescentemente:");
+  print(mutableList);
+  return mutableList;
+}
+
 // Função para gerar lista aleatória
 List<int> gerarLista() {
   List<int> lista = List.filled(10, 0);
@@ -37,6 +56,9 @@ void main() {
   print(""); // Espaço visual
 
   executarEstrategia(filtrarPares);
+  print(""); // Espaço visual
+
+  executarEstrategia(ordenacaoCrescente);
   print(""); // Espaço visual
 
   // Você pode adicionar mais estratégias depois usando o mesmo padrão
